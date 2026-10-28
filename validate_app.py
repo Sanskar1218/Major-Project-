@@ -23,3 +23,4 @@ for key, p in presets.items():
     print(f"  {key:22s}: clinical={filled:2d}/36, img_sample={img_sample or '(none)':10s}, img_exists={img_exists}")
 
 print("\nAll good!")
+
