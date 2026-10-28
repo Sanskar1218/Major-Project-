@@ -1,3 +1,13 @@
+---
+title: IVF Implantation Success Predictor
+emoji: 🔬
+colorFrom: blue
+colorTo: teal
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Intelligent IVF Implantation Success Predictor
 
 A multimodal deep learning and clinical decision support system for predicting embryo implantation and clinical pregnancy success during in-vitro fertilization (IVF).
@@ -61,3 +71,4 @@ Plus an optional **Blastocyst Microphotograph Upload**.
 
 ## 📄 License
 This project is for research and educational purposes.
+

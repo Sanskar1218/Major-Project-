@@ -1,0 +1,16 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+Data set splitting/
+outputs/outputs/cache/
+outputs/cache/
+*.npy
+*.npz
+*.zip
+.DS_Store
+Thumbs.db
