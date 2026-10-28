@@ -4,9 +4,9 @@ torchvision
 timm
 xgboost
 lightgbm
-scikit-learn
+scikit-learn==1.6.1
 pandas
 numpy
 pillow
-gradio
+gradio==6.31.0
 openpyxl
