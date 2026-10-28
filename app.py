@@ -96,7 +96,8 @@ body { font-family: 'Inter', sans-serif; }
 # ── Helper: build result HTML ─────────────────────────────────────────────────
 def _result_html(result: dict) -> str:
     prob_pct = result["probability"] * 100
-    pred     = result["prediction"]          # "Likely" / "Unlikely"
+    thr      = result.get("threshold", predictor.cfg["threshold"])
+    pred     = "Likely" if result["probability"] >= thr else "Unlikely"
     rel      = result["reliability"]         # "High" / "Medium" / "Low"
     cs       = result.get("clinical_score")
     img_s    = result.get("image_score")
@@ -121,7 +122,7 @@ def _result_html(result: dict) -> str:
   </div>
   <hr style="margin:14px 0; border:none; border-top:1px solid #e5e7eb"/>
   <div id="subscores">
-    <b>Threshold:</b> {predictor.threshold*100:.1f}% &nbsp;|&nbsp;
+    <b>Threshold:</b> {thr*100:.1f}% &nbsp;|&nbsp;
     <b>Clinical score:</b> {cs_str} &nbsp;|&nbsp;
     <b>Image score:</b> {imgs_str} &nbsp;|&nbsp;
     <b>Data completeness:</b> {comp*100:.0f}%
@@ -257,16 +258,20 @@ with gr.Blocks(title="IVF Success Predictor") as demo:
     # ── Info footer ──
     gr.Markdown("""
 ---
-**How reliability is determined**
+**How reliable is a prediction?** Measured on the held-out external-validation set (486 patients):
 
-| Reliability | Condition |
-|---|---|
-| 🟢 High   | All 36 clinical inputs + embryo image provided (completeness ≥ 75%) |
-| 🟡 Medium | Hormones+age group + image, or most clinical data provided |
-| 🔴 Low    | Image only, or few clinical fields filled |
+| Inputs provided | Test AUC | Reliability shown |
+|---|---|---|
+| All 36 clinical values (with or without image) | 0.875 | 🟢 High |
+| Female hormones + blood tests + image | 0.80 | 🟡 Medium |
+| Male data + image | 0.74 | 🟡 Medium |
+| Female hormones + age (+ image) | 0.71 | 🟡 Medium / 🔴 Low |
+| Embryo image only | 0.54 (close to chance) | 🔴 Low |
 
+> The embryo image alone is **not** a useful predictor in this model; the clinical data carries almost all of the signal.
 > Model: 5-fold ensemble of ConvNeXt-Tiny + EfficientNet-B3 (image) and XGBoost + LightGBM (clinical),
-> fused by Logistic Regression meta-learner. Threshold ≈ 38.4%.
+> fused by a logistic-regression meta-learner. Decision threshold ≈ 38.4%.
+> Prototype for academic use only; not a medical device.
 """)
 
 # ── Launch ───────────────────────────────────────────────────────────────────
