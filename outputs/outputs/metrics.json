@@ -1,0 +1,110 @@
+{
+  "test_by_scenario": [
+    {
+      "Scenario": "All clinical + image (full fusion)",
+      "AUC": 0.875,
+      "AUC_lo": 0.839,
+      "AUC_hi": 0.906,
+      "Accuracy": 0.776,
+      "Sensitivity": 0.735,
+      "Specificity": 0.795,
+      "F1": 0.677,
+      "Brier": 0.133
+    },
+    {
+      "Scenario": "Female hormones+age + image",
+      "AUC": 0.707,
+      "AUC_lo": 0.658,
+      "AUC_hi": 0.753,
+      "Accuracy": 0.673,
+      "Sensitivity": 0.574,
+      "Specificity": 0.719,
+      "F1": 0.528,
+      "Brier": 0.191
+    },
+    {
+      "Scenario": "Female hormones+blood + image",
+      "AUC": 0.796,
+      "AUC_lo": 0.751,
+      "AUC_hi": 0.838,
+      "Accuracy": 0.71,
+      "Sensitivity": 0.6,
+      "Specificity": 0.761,
+      "F1": 0.569,
+      "Brier": 0.169
+    },
+    {
+      "Scenario": "Male data + image",
+      "AUC": 0.735,
+      "AUC_lo": 0.691,
+      "AUC_hi": 0.78,
+      "Accuracy": 0.658,
+      "Sensitivity": 0.677,
+      "Specificity": 0.65,
+      "F1": 0.559,
+      "Brier": 0.193
+    },
+    {
+      "Scenario": "Image only",
+      "AUC": 0.54,
+      "AUC_lo": 0.486,
+      "AUC_hi": 0.597,
+      "Accuracy": 0.438,
+      "Sensitivity": 0.742,
+      "Specificity": 0.296,
+      "F1": 0.457,
+      "Brier": 0.222
+    },
+    {
+      "Scenario": "All clinical only",
+      "AUC": 0.875,
+      "AUC_lo": 0.838,
+      "AUC_hi": 0.906,
+      "Accuracy": 0.776,
+      "Sensitivity": 0.729,
+      "Specificity": 0.798,
+      "F1": 0.675,
+      "Brier": 0.133
+    },
+    {
+      "Scenario": "Female hormones+age only",
+      "AUC": 0.703,
+      "AUC_lo": 0.654,
+      "AUC_hi": 0.748,
+      "Accuracy": 0.656,
+      "Sensitivity": 0.555,
+      "Specificity": 0.704,
+      "F1": 0.507,
+      "Brier": 0.193
+    }
+  ],
+  "clinical_oof_auc": {
+    "full": 0.9901908328874621,
+    "female_hormones_age": 0.8414145017141272,
+    "female_all": 0.9586855716069199,
+    "male_all": 0.896046608406159,
+    "hormones_age+semen": 0.8990190832887461,
+    "hormones_age+cycle": 0.8880625408715296
+  },
+  "image_oof_auc": 0.5468848463230486,
+  "best_xgb": {
+    "n_estimators": 450,
+    "learning_rate": 0.07280626891697722,
+    "max_depth": 6,
+    "subsample": 0.60318867790088,
+    "colsample_bytree": 0.8366078846865055,
+    "min_child_weight": 4,
+    "reg_lambda": 1.6763254068701827
+  },
+  "best_lgb": {
+    "n_estimators": 550,
+    "learning_rate": 0.08750245667236743,
+    "num_leaves": 47,
+    "min_child_samples": 41,
+    "subsample": 0.8437394499305592,
+    "colsample_bytree": 0.9596768477186572,
+    "reg_lambda": 0.9168810630447546,
+    "subsample_freq": 1
+  },
+  "threshold": 0.3843540462109435
+}

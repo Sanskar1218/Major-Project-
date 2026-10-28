@@ -1,0 +1,122 @@
+{
+  "features": [
+    "Female_Age",
+    "Female_Baseline_FSH",
+    "Female_Baseline_PRL",
+    "Female_Baseline_T",
+    "Female_Baseline_P",
+    "Female_AMH",
+    "Female_White_Blood_Cell_Count",
+    "Female_Platelet_Count",
+    "Female_Hematocrit",
+    "Female_Prothrombin_Time_PT",
+    "Female_Activated_Partial_Thromboplastin_Time_APTT",
+    "Female_Thrombin_Time_TT",
+    "Female_D_Dimer",
+    "Female_Thyroid_Peroxidase_Antibody_TPO",
+    "Female_Fasting_Blood_Glucose",
+    "Female_Serum_Uric_Acid",
+    "Male_Sperm_Concentration",
+    "Male_Normal_Sperm_Morphology_Rate",
+    "Male_Progressive_Motility_PR",
+    "Male_Non_Progressive_Motility_NP",
+    "Male_Sperm_Vitality",
+    "Male_DNA_Fragmentation_Index_DFI",
+    "Male_ALT",
+    "Male_AST",
+    "Male_Serum_Creatinine",
+    "Male_White_Blood_Cell_Count",
+    "Male_Platelet_Count",
+    "Male_Fasting_Blood_Glucose",
+    "Female_Total_Gonadotropin_Stimulation_Days",
+    "Female_Progesterone_on_HCG_Day",
+    "Male_Post_Processing_Non_Progressive_Motility_NP",
+    "Male_Semen_Preparation_Method",
+    "Male_Post_Processing_Sperm_Concentration",
+    "Male_Post_Processing_Progressive_Motility_PR",
+    "Male_Post_Processing_Immotile_Sperm_IM",
+    "Number_of_Cryopreserved_Embryos"
+  ],
+  "sections": {
+    "female_hormones_age": [
+      "Female_Age",
+      "Female_Baseline_FSH",
+      "Female_Baseline_PRL",
+      "Female_Baseline_T",
+      "Female_Baseline_P",
+      "Female_AMH"
+    ],
+    "female_blood": [
+      "Female_White_Blood_Cell_Count",
+      "Female_Platelet_Count",
+      "Female_Hematocrit",
+      "Female_Prothrombin_Time_PT",
+      "Female_Activated_Partial_Thromboplastin_Time_APTT",
+      "Female_Thrombin_Time_TT",
+      "Female_D_Dimer",
+      "Female_Thyroid_Peroxidase_Antibody_TPO",
+      "Female_Fasting_Blood_Glucose",
+      "Female_Serum_Uric_Acid"
+    ],
+    "male_semen": [
+      "Male_Sperm_Concentration",
+      "Male_Normal_Sperm_Morphology_Rate",
+      "Male_Progressive_Motility_PR",
+      "Male_Non_Progressive_Motility_NP",
+      "Male_Sperm_Vitality",
+      "Male_DNA_Fragmentation_Index_DFI"
+    ],
+    "male_blood": [
+      "Male_ALT",
+      "Male_AST",
+      "Male_Serum_Creatinine",
+      "Male_White_Blood_Cell_Count",
+      "Male_Platelet_Count",
+      "Male_Fasting_Blood_Glucose"
+    ],
+    "cycle": [
+      "Female_Total_Gonadotropin_Stimulation_Days",
+      "Female_Progesterone_on_HCG_Day",
+      "Number_of_Cryopreserved_Embryos"
+    ],
+    "post_processing": [
+      "Male_Post_Processing_Non_Progressive_Motility_NP",
+      "Male_Semen_Preparation_Method",
+      "Male_Post_Processing_Sperm_Concentration",
+      "Male_Post_Processing_Progressive_Motility_PR",
+      "Male_Post_Processing_Immotile_Sperm_IM"
+    ]
+  },
+  "cat_maps": {},
+  "backbones": [
+    "convnext_tiny",
+    "efficientnet_b3"
+  ],
+  "n_folds": 5,
+  "img_size": 224,
+  "cache_size": 256,
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "threshold": 0.3843540462109435,
+  "positive_class": "clinical pregnancy / implantation success",
+  "n_train": 2056,
+  "n_test": 486,
+  "test_prevalence": 0.31893004115226337,
+  "scenario_auc": {
+    "All clinical + image (full fusion)": 0.875,
+    "Female hormones+age + image": 0.707,
+    "Female hormones+blood + image": 0.796,
+    "Male data + image": 0.735,
+    "Image only": 0.54,
+    "All clinical only": 0.875,
+    "Female hormones+age only": 0.703
+  }
+}

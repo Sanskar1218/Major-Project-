@@ -1,0 +1,413 @@
+{
+  "sections": [
+    {
+      "id": "female_hormones_age",
+      "title": "Female Hormones & Age",
+      "icon": "user-female",
+      "description": "Primary ovarian reserve, pituitary endocrine axis and maternal chronological age",
+      "features": [
+        {
+          "name": "Female_Age",
+          "label": "Female Age",
+          "unit": "years",
+          "placeholder": "e.g. 32",
+          "step": "1",
+          "min": 18,
+          "max": 55,
+          "tooltip": "Age of female partner at egg retrieval"
+        },
+        {
+          "name": "Female_Baseline_FSH",
+          "label": "Baseline FSH",
+          "unit": "mIU/mL",
+          "placeholder": "e.g. 6.8",
+          "step": "0.1",
+          "min": 0,
+          "max": 50,
+          "tooltip": "Follicle-Stimulating Hormone on day 2-3 of cycle"
+        },
+        {
+          "name": "Female_Baseline_PRL",
+          "label": "Baseline Prolactin (PRL)",
+          "unit": "ng/mL",
+          "placeholder": "e.g. 15.2",
+          "step": "0.1",
+          "min": 0,
+          "max": 200,
+          "tooltip": "Serum prolactin concentration"
+        },
+        {
+          "name": "Female_Baseline_T",
+          "label": "Baseline Testosterone (T)",
+          "unit": "ng/dL",
+          "placeholder": "e.g. 0.35",
+          "step": "0.01",
+          "min": 0,
+          "max": 10,
+          "tooltip": "Total serum testosterone"
+        },
+        {
+          "name": "Female_Baseline_P",
+          "label": "Baseline Progesterone (P)",
+          "unit": "ng/mL",
+          "placeholder": "e.g. 0.45",
+          "step": "0.01",
+          "min": 0,
+          "max": 20,
+          "tooltip": "Basal serum progesterone"
+        },
+        {
+          "name": "Female_AMH",
+          "label": "Anti-Müllerian Hormone (AMH)",
+          "unit": "ng/mL",
+          "placeholder": "e.g. 2.85",
+          "step": "0.01",
+          "min": 0,
+          "max": 30,
+          "tooltip": "Ovarian reserve biomarker"
+        }
+      ]
+    },
+    {
+      "id": "female_blood",
+      "title": "Female Blood & General Tests",
+      "icon": "activity",
+      "description": "Hematology, coagulation profile, immunological markers, and metabolic panel",
+      "features": [
+        {
+          "name": "Female_White_Blood_Cell_Count",
+          "label": "WBC Count",
+          "unit": "×10⁹/L",
+          "placeholder": "e.g. 6.2",
+          "step": "0.1",
+          "min": 0,
+          "max": 30,
+          "tooltip": "Total white blood cell count"
+        },
+        {
+          "name": "Female_Platelet_Count",
+          "label": "Platelet Count",
+          "unit": "×10⁹/L",
+          "placeholder": "e.g. 235",
+          "step": "1",
+          "min": 10,
+          "max": 800,
+          "tooltip": "Blood platelet concentration"
+        },
+        {
+          "name": "Female_Hematocrit",
+          "label": "Hematocrit",
+          "unit": "%",
+          "placeholder": "e.g. 39.5",
+          "step": "0.1",
+          "min": 15,
+          "max": 60,
+          "tooltip": "Volume percentage of red blood cells"
+        },
+        {
+          "name": "Female_Prothrombin_Time_PT",
+          "label": "Prothrombin Time (PT)",
+          "unit": "sec",
+          "placeholder": "e.g. 11.5",
+          "step": "0.1",
+          "min": 5,
+          "max": 30,
+          "tooltip": "Extrinsic pathway coagulation time"
+        },
+        {
+          "name": "Female_Activated_Partial_Thromboplastin_Time_APTT",
+          "label": "APTT",
+          "unit": "sec",
+          "placeholder": "e.g. 28.5",
+          "step": "0.1",
+          "min": 10,
+          "max": 60,
+          "tooltip": "Intrinsic pathway coagulation time"
+        },
+        {
+          "name": "Female_Thrombin_Time_TT",
+          "label": "Thrombin Time (TT)",
+          "unit": "sec",
+          "placeholder": "e.g. 16.2",
+          "step": "0.1",
+          "min": 5,
+          "max": 40,
+          "tooltip": "Fibrin conversion rate"
+        },
+        {
+          "name": "Female_D_Dimer",
+          "label": "D-Dimer",
+          "unit": "mg/L FEU",
+          "placeholder": "e.g. 0.22",
+          "step": "0.01",
+          "min": 0,
+          "max": 10,
+          "tooltip": "Fibrin degradation marker"
+        },
+        {
+          "name": "Female_Thyroid_Peroxidase_Antibody_TPO",
+          "label": "TPO Antibody",
+          "unit": "IU/mL",
+          "placeholder": "e.g. 12.5",
+          "step": "0.1",
+          "min": 0,
+          "max": 500,
+          "tooltip": "Thyroid autoimmune marker"
+        },
+        {
+          "name": "Female_Fasting_Blood_Glucose",
+          "label": "Fasting Blood Glucose",
+          "unit": "mmol/L",
+          "placeholder": "e.g. 5.1",
+          "step": "0.1",
+          "min": 2,
+          "max": 20,
+          "tooltip": "Basal glycemic control"
+        },
+        {
+          "name": "Female_Serum_Uric_Acid",
+          "label": "Serum Uric Acid",
+          "unit": "μmol/L",
+          "placeholder": "e.g. 250",
+          "step": "1",
+          "min": 50,
+          "max": 800,
+          "tooltip": "Purine metabolic status"
+        }
+      ]
+    },
+    {
+      "id": "male_semen",
+      "title": "Male Semen Analysis",
+      "icon": "droplet",
+      "description": "Baseline sperm count, motility, morphology, and DNA integrity",
+      "features": [
+        {
+          "name": "Male_Sperm_Concentration",
+          "label": "Sperm Concentration",
+          "unit": "×10⁶/mL",
+          "placeholder": "e.g. 45.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 300,
+          "tooltip": "Density of spermatozoa in raw sample"
+        },
+        {
+          "name": "Male_Normal_Sperm_Morphology_Rate",
+          "label": "Normal Morphology Rate",
+          "unit": "%",
+          "placeholder": "e.g. 4.5",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Strict Tygerberg criteria normal forms"
+        },
+        {
+          "name": "Male_Progressive_Motility_PR",
+          "label": "Progressive Motility (PR)",
+          "unit": "%",
+          "placeholder": "e.g. 45.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Sperm swimming linearly"
+        },
+        {
+          "name": "Male_Non_Progressive_Motility_NP",
+          "label": "Non-Progressive Motility (NP)",
+          "unit": "%",
+          "placeholder": "e.g. 10.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Sperm moving without forward progression"
+        },
+        {
+          "name": "Male_Sperm_Vitality",
+          "label": "Sperm Vitality",
+          "unit": "%",
+          "placeholder": "e.g. 70.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Membrane integrity / eosin-nigrosin vitality"
+        },
+        {
+          "name": "Male_DNA_Fragmentation_Index_DFI",
+          "label": "DNA Fragmentation Index (DFI)",
+          "unit": "%",
+          "placeholder": "e.g. 15.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Sperm chromatin dispersion / damage index"
+        }
+      ]
+    },
+    {
+      "id": "male_blood",
+      "title": "Male Blood Tests",
+      "icon": "heart",
+      "description": "Hepatic, renal, hematologic, and metabolic parameters of male partner",
+      "features": [
+        {
+          "name": "Male_ALT",
+          "label": "ALT (Alanine Aminotransferase)",
+          "unit": "U/L",
+          "placeholder": "e.g. 24",
+          "step": "1",
+          "min": 5,
+          "max": 200,
+          "tooltip": "Liver transaminase"
+        },
+        {
+          "name": "Male_AST",
+          "label": "AST (Aspartate Aminotransferase)",
+          "unit": "U/L",
+          "placeholder": "e.g. 21",
+          "step": "1",
+          "min": 5,
+          "max": 200,
+          "tooltip": "Aspartate transaminase"
+        },
+        {
+          "name": "Male_Serum_Creatinine",
+          "label": "Serum Creatinine",
+          "unit": "μmol/L",
+          "placeholder": "e.g. 75",
+          "step": "1",
+          "min": 30,
+          "max": 400,
+          "tooltip": "Renal filtration marker"
+        },
+        {
+          "name": "Male_White_Blood_Cell_Count",
+          "label": "Male WBC Count",
+          "unit": "×10⁹/L",
+          "placeholder": "e.g. 6.4",
+          "step": "0.1",
+          "min": 1,
+          "max": 30,
+          "tooltip": "Male systemic leukocytes"
+        },
+        {
+          "name": "Male_Platelet_Count",
+          "label": "Male Platelet Count",
+          "unit": "×10⁹/L",
+          "placeholder": "e.g. 220",
+          "step": "1",
+          "min": 10,
+          "max": 800,
+          "tooltip": "Male platelet count"
+        },
+        {
+          "name": "Male_Fasting_Blood_Glucose",
+          "label": "Male Fasting Glucose",
+          "unit": "mmol/L",
+          "placeholder": "e.g. 5.2",
+          "step": "0.1",
+          "min": 2,
+          "max": 20,
+          "tooltip": "Male glycemic status"
+        }
+      ]
+    },
+    {
+      "id": "cycle",
+      "title": "Cycle Details",
+      "icon": "calendar",
+      "description": "Controlled ovarian stimulation response and embryo cohort yield",
+      "features": [
+        {
+          "name": "Female_Total_Gonadotropin_Stimulation_Days",
+          "label": "Stimulation Days",
+          "unit": "days",
+          "placeholder": "e.g. 10",
+          "step": "1",
+          "min": 5,
+          "max": 25,
+          "tooltip": "Total days of gonadotropin stimulation"
+        },
+        {
+          "name": "Female_Progesterone_on_HCG_Day",
+          "label": "Progesterone on Trigger Day",
+          "unit": "ng/mL",
+          "placeholder": "e.g. 0.95",
+          "step": "0.01",
+          "min": 0,
+          "max": 10,
+          "tooltip": "Serum P on hCG / trigger day"
+        },
+        {
+          "name": "Number_of_Cryopreserved_Embryos",
+          "label": "Cryopreserved Embryos",
+          "unit": "embryos",
+          "placeholder": "e.g. 3",
+          "step": "1",
+          "min": 0,
+          "max": 30,
+          "tooltip": "Total good-quality embryos vitrified"
+        }
+      ]
+    },
+    {
+      "id": "post_processing",
+      "title": "Post-Processed Semen",
+      "icon": "filter",
+      "description": "Sperm recovery and motility characteristics after wash and preparation",
+      "features": [
+        {
+          "name": "Male_Semen_Preparation_Method",
+          "label": "Preparation Method",
+          "unit": "code",
+          "placeholder": "e.g. 1 (DGC) or 2 (Swim-up)",
+          "step": "1",
+          "min": 0,
+          "max": 10,
+          "tooltip": "Sperm wash technique (e.g. density gradient or swim-up)"
+        },
+        {
+          "name": "Male_Post_Processing_Sperm_Concentration",
+          "label": "Post-Prep Concentration",
+          "unit": "×10⁶/mL",
+          "placeholder": "e.g. 25.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 200,
+          "tooltip": "Concentration after preparation"
+        },
+        {
+          "name": "Male_Post_Processing_Progressive_Motility_PR",
+          "label": "Post-Prep Progressive Motility (PR)",
+          "unit": "%",
+          "placeholder": "e.g. 70.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Forward progressive percentage post-prep"
+        },
+        {
+          "name": "Male_Post_Processing_Non_Progressive_Motility_NP",
+          "label": "Post-Prep Non-Progressive (NP)",
+          "unit": "%",
+          "placeholder": "e.g. 8.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Non-progressive percentage post-prep"
+        },
+        {
+          "name": "Male_Post_Processing_Immotile_Sperm_IM",
+          "label": "Post-Prep Immotile (IM)",
+          "unit": "%",
+          "placeholder": "e.g. 22.0",
+          "step": "0.1",
+          "min": 0,
+          "max": 100,
+          "tooltip": "Immotile percentage post-prep"
+        }
+      ]
+    }
+  ]
+}
+

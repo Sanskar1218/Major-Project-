@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVF Implantation Success Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24M4.93 19.07l4.24-4.24m5.66-5.66 4.24-4.24"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">IVF Implantation Predictor</h1>
+          <p class="brand-subtitle">Multimodal Clinical & Deep Learning Embryo Viability System</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnPerformanceModal" class="btn btn-secondary btn-sm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          Model Performance & AUC
+        </button>
+        <span class="status-pill status-ready" id="serverStatusBadge">
+          <span class="status-dot"></span> System Ready
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Presets & Scenario Quick Selector Bar -->
+    <section class="scenario-bar card">
+      <div class="scenario-header">
+        <div>
+          <span class="badge-label">PRESETS</span>
+          <span class="scenario-title">Quick Test Scenarios:</span>
+        </div>
+        <div class="scenario-buttons">
+          <button type="button" class="preset-btn" data-preset="all">
+            <span class="preset-name">🎯 All 36 Inputs + Image</span>
+            <span class="preset-meta">High Reliability (~0.3%)</span>
+          </button>
+          <button type="button" class="preset-btn" data-preset="hormones_age_image">
+            <span class="preset-name">🧪 Hormones+Age + Image</span>
+            <span class="preset-meta">Medium Reliability (~30.6%)</span>
+          </button>
+          <button type="button" class="preset-btn" data-preset="image_only">
+            <span class="preset-name">🔬 Image Only</span>
+            <span class="preset-meta">Low Reliability (~37.5%)</span>
+          </button>
+          <button type="button" class="preset-btn" data-preset="hormones_age_only">
+            <span class="preset-name">📋 Hormones+Age Only</span>
+            <span class="preset-meta">Low Reliability (~32.4%)</span>
+          </button>
+          <button type="button" class="preset-btn preset-positive" data-preset="pregnant_sample">
+            <span class="preset-name">✨ Positive / Likely Case</span>
+            <span class="preset-meta">High Probability (~85%+)</span>
+          </button>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnClearForm">
+            Clear All
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Layout: Left Input Sections, Right Image & Output -->
+    <div class="prediction-grid">
+      <!-- Left Column: 36 Form Inputs in 6 Sections -->
+      <div class="clinical-column">
+        <div class="section-toolbar">
+          <div class="toolbar-title-box">
+            <h2 class="section-heading">Clinical & Laboratory Inputs</h2>
+            <p class="section-subtext">36 parameters grouped into 6 clinical sections. You may leave any fields blank.</p>
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn-text" id="btnExpandAll">Expand All</button>
+            <span class="divider-v">|</span>
+            <button type="button" class="btn btn-text" id="btnCollapseAll">Collapse All</button>
+          </div>
+        </div>
+
+        <form id="clinicalForm" autocomplete="off">
+          <!-- Accordion containers rendered dynamically from features_metadata.json -->
+          <div id="accordionContainer" class="accordion-list">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Embryo Image Upload & Results Dashboard -->
+      <div class="sticky-column">
+        <!-- Embryo Image Card -->
+        <div class="card image-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Embryo Image (Blastocyst)</h3>
+              <p class="card-subtext">Optional. Upload high-res blastocyst micro-photograph (JPG or PNG).</p>
+            </div>
+            <span class="image-indicator" id="imageIndicator">No Image</span>
+          </div>
+
+          <div class="drop-zone" id="dropZone">
+            <input type="file" id="imageFileInput" accept="image/jpeg,image/png,image/webp" class="file-input-hidden">
+            <div class="drop-zone-content" id="dropZonePrompt">
+              <div class="upload-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <p class="drop-text">Drag & drop embryo image here, or <span class="text-link">browse</span></p>
+              <p class="drop-subtext">Supports PNG, JPG (ConvNeXt + EfficientNet dual vision ensemble)</p>
+            </div>
+
+            <!-- Preview box -->
+            <div class="image-preview-container hidden" id="imagePreviewContainer">
+              <img id="imagePreview" src="" alt="Embryo Preview">
+              <div class="image-preview-overlay">
+                <span class="preview-filename" id="previewFilename">image.jpg</span>
+                <button type="button" class="btn btn-danger btn-xs" id="btnRemoveImage">Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sample-image-chips">
+            <span class="chip-label">Quick Sample Images:</span>
+            <button type="button" class="chip-btn" data-sample="sample_0">Blastocyst #1</button>
+            <button type="button" class="chip-btn" data-sample="sample_1">Blastocyst #2</button>
+            <button type="button" class="chip-btn" data-sample="sample_2">Blastocyst #3</button>
+          </div>
+        </div>
+
+        <!-- Live Input Status Card -->
+        <div class="card live-status-card">
+          <div class="status-summary-row">
+            <div class="summary-item">
+              <span class="summary-label">Clinical Inputs:</span>
+              <span class="summary-val"><strong id="inputsCount">0</strong> / 36</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Image Attached:</span>
+              <span class="summary-val" id="summaryImage">No</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Expected Reliability:</span>
+              <span class="reliability-badge badge-neutral" id="summaryReliability">None</span>
+            </div>
+          </div>
+          <div class="completeness-bar-wrapper">
+            <div class="completeness-bar" id="completenessBar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Action Submit Button -->
+        <button type="button" id="btnPredict" class="btn btn-primary btn-block btn-lg">
+          <span class="btn-spinner hidden" id="predictSpinner"></span>
+          <span class="btn-text" id="predictBtnText">⚡ Predict Implantation Success</span>
+        </button>
+
+        <!-- Prediction Result Card -->
+        <div class="card result-card hidden" id="resultCard">
+          <div class="result-header">
+            <div>
+              <span class="badge-label">PREDICTION OUTCOME</span>
+              <h3 class="result-title">Implantation Assessment</h3>
+            </div>
+            <span class="reliability-tag" id="resultReliabilityTag">Reliability: High</span>
+          </div>
+
+          <div class="result-highlight-box" id="resultHighlightBox">
+            <div class="probability-circle" id="probCircle">
+              <span class="prob-number" id="probVal">0.0%</span>
+              <span class="prob-caption">Pregnancy Probability</span>
+            </div>
+            <div class="prediction-verdict">
+              <div class="verdict-tag" id="verdictTag">Evaluating...</div>
+              <p class="verdict-desc" id="verdictDesc">Based on multi-modal clinical-embryo fusion model.</p>
+            </div>
+          </div>
+
+          <!-- Sub-model scores -->
+          <div class="sub-scores-grid">
+            <div class="sub-score-card">
+              <span class="sub-score-title">Clinical Ensemble</span>
+              <span class="sub-score-val" id="scoreClinical">--</span>
+              <span class="sub-score-sub" id="clinicalInputsGiven">0 of 36 used</span>
+            </div>
+            <div class="sub-score-card">
+              <span class="sub-score-title">Embryo Vision</span>
+              <span class="sub-score-val" id="scoreImage">--</span>
+              <span class="sub-score-sub" id="visionModelUsed">10 CNN folds</span>
+            </div>
+            <div class="sub-score-card">
+              <span class="sub-score-title">Calibrated Threshold</span>
+              <span class="sub-score-val" id="scoreThreshold">38.4%</span>
+              <span class="sub-score-sub">Optimal F1 cutoff</span>
+            </div>
+          </div>
+
+          <!-- Clinical Rationale -->
+          <div class="rationale-box">
+            <h4 class="rationale-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              Clinical Guidance & Interpretation
+            </h4>
+            <p id="rationaleText" class="rationale-text"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Performance & Validation Modal -->
+  <div class="modal-backdrop hidden" id="performanceModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Model Performance & Scenario Benchmarks</h3>
+        <button type="button" class="btn-close" id="btnCloseModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">
+          The multimodal IVF model was trained on 2,542 real clinical cycles with 5-fold cross-validation and tested on a rigorous untouched external validation holdout.
+        </p>
+
+        <!-- Scenarios Table -->
+        <h4 class="table-heading">Test Results Across Real-World Clinical Scenarios</h4>
+        <div class="table-responsive">
+          <table class="benchmark-table" id="benchmarkTable">
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>AUC (95% CI)</th>
+                <th>Accuracy</th>
+                <th>Sensitivity</th>
+                <th>Specificity</th>
+                <th>F1 Score</th>
+              </tr>
+            </thead>
+            <tbody id="benchmarkTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Figure Thumbnails / Gallery -->
+        <h4 class="gallery-heading">Explainability & Validation Figures</h4>
+        <div class="figure-grid" id="figureGrid">
+          <div class="figure-card">
+            <img src="/api/figures/fig_results.png" alt="ROC & PR Curves" loading="lazy">
+            <span class="figure-caption">Scenario ROC Curves & Calibration</span>
+          </div>
+          <div class="figure-card">
+            <img src="/api/figures/fig_shap.png" alt="SHAP Clinical Importance" loading="lazy">
+            <span class="figure-caption">SHAP Feature Importance</span>
+          </div>
+          <div class="figure-card">
+            <img src="/api/figures/fig_gradcam.png" alt="Embryo Grad-CAM" loading="lazy">
+            <span class="figure-caption">Grad-CAM Blastocyst Attention</span>
+          </div>
+          <div class="figure-card">
+            <img src="/api/figures/fig_training_curves.png" alt="Training Curves" loading="lazy">
+            <span class="figure-caption">CNN & GBM Training Loss/AUC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>IVF Clinical Decision Support Tool &bull; Multimodal Deep Learning Model (ConvNeXt-Tiny + EfficientNet-B3 + XGBoost + LightGBM)</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

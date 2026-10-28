@@ -1,0 +1,28 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache & build
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Large Training Data & Cache (exceeds GitHub 100MB limit)
+outputs/outputs/cache/
+outputs/cache/
+*.npy
+*.npz
+*.zip
+Data set splitting/
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local test scratch
+scratch_test.py

@@ -1,0 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+timm
+xgboost
+lightgbm
+scikit-learn
+pandas
+numpy
+pillow
+flask
+flask-cors
+
