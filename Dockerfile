@@ -32,3 +32,4 @@ USER user
 EXPOSE 7860
 
 CMD ["python", "app.py"]
+

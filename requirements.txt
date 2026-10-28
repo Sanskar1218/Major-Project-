@@ -8,6 +8,5 @@ scikit-learn
 pandas
 numpy
 pillow
-flask
-flask-cors
-
+gradio
+openpyxl

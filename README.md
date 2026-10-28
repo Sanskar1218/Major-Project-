@@ -1,74 +1,37 @@
 ---
-title: IVF Implantation Success Predictor
+title: IVF Embryo Success Predictor
 emoji: 🔬
 colorFrom: blue
 colorTo: teal
-sdk: docker
-app_port: 7860
+sdk: gradio
+app_file: app.py
 pinned: false
 ---
 
-# Intelligent IVF Implantation Success Predictor
+# IVF Embryo Implantation Success Predictor
 
-A multimodal deep learning and clinical decision support system for predicting embryo implantation and clinical pregnancy success during in-vitro fertilization (IVF).
+A machine-learning web app that predicts the likelihood of clinical pregnancy from IVF blastocyst images and/or clinical laboratory data.
 
-## 🚀 Overview
+## Features
 
-The system combines **36 clinical and laboratory features** across 6 clinical panels with deep convolutional neural network embeddings of **blastocyst microphotographs** using a calibrated multimodal fusion architecture.
+- **36 clinical inputs** organised into 6 sections (all optional)
+- **Blastocyst image upload** (JPG / PNG)
+- **Adaptive reliability** — High / Medium / Low depending on how much data is provided
+- Quick **preset buttons** to load example patient data
 
-### Model Architecture
-- **Clinical Branch**: Optuna-tuned ensemble of **XGBoost** and **LightGBM** models trained with section dropout to allow flexible partial or missing inputs.
-- **Vision Branch**: 5-fold ensemble of **ConvNeXt-Tiny** and **EfficientNet-B3** backbones with Test-Time Augmentation (TTA).
-- **Multimodal Fusion**: Calibrated logistic regression meta-classifier with missing-modality compensation.
+## Model Architecture
 
-### Benchmark Performance Across Scenarios
-| Scenario | AUC (95% CI) | Accuracy | Sensitivity | Specificity | F1 Score |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **All clinical + image (full fusion)** | **0.875** (0.839–0.906) | 77.6% | 73.5% | 79.5% | 0.677 |
-| **Female hormones + blood + image** | **0.796** (0.751–0.838) | 71.0% | 60.0% | 76.1% | 0.569 |
-| **Male data + image** | **0.735** (0.691–0.780) | 65.8% | 67.7% | 65.0% | 0.559 |
-| **Female hormones + age + image** | **0.707** (0.658–0.753) | 67.3% | 57.4% | 71.9% | 0.528 |
-| **Female hormones + age only** | **0.703** (0.654–0.748) | 65.6% | 55.5% | 70.4% | 0.507 |
-| **All clinical only** | **0.875** (0.838–0.906) | 77.6% | 72.9% | 79.8% | 0.675 |
-| **Image only** | **0.540** (0.486–0.597) | 43.8% | 74.2% | 29.6% | 0.457 |
+| Component | Details |
+|---|---|
+| Image models | 5-fold ConvNeXt-Tiny + 5-fold EfficientNet-B3 ensemble |
+| Clinical models | 5-fold XGBoost + 5-fold LightGBM ensemble |
+| Meta-learner | Logistic Regression stacker |
+| Decision threshold | ≈ 38.4% |
+| Full-fusion AUC | 0.875 |
 
----
+## Usage
 
-## 🛠️ Installation & Setup
+Fill in any combination of clinical fields and/or upload an embryo image, then click **Predict**.  
+Leave sections blank — the model still runs and shows the appropriate reliability level.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/Sanskar1218/<repo-name>.git
-cd <repo-name>
-```
-
-### 2. Create Virtual Environment & Install Dependencies
-```bash
-python -m venv venv
-.\venv\Scripts\activate   # Windows (or: source venv/bin/activate on Linux/Mac)
-pip install -r requirements.txt
-```
-
-### 3. Run the Web Application
-```bash
-python app.py
-```
-Open **http://127.0.0.1:5000** in your browser. (On Windows, you can also double-click `run.bat`).
-
----
-
-## 📋 Input Groups
-The web application organizes the 36 clinical parameters into 6 collapsible sections:
-1. **Female Hormones & Age** (6 inputs)
-2. **Female Blood & General Tests** (10 inputs)
-3. **Male Semen Analysis** (6 inputs)
-4. **Male Blood Tests** (6 inputs)
-5. **Cycle Details** (3 inputs)
-6. **Post-Processed Semen** (5 inputs)
-Plus an optional **Blastocyst Microphotograph Upload**.
-
----
-
-## 📄 License
-This project is for research and educational purposes.
-
+> ⚠️ For research use only. Not a substitute for clinical medical advice.
